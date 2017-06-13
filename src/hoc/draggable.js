@@ -9,19 +9,22 @@ const draggable = WrappedComponent =>
         isDragging: false,
         originalParent: null,
         destinationParent: null,
-        prevTo: null
+        prevTo: null,
+        parent: null
       }
     }
 
     end(e) {
       this.props.updateOrder({
-        from: this.state.from
+        from: this.state.from,
+        parent: this.state.parent
       })
     }
 
     start(e) {
       this.setState({
-        from: e.currentTarget.dataset.id
+        from: e.currentTarget.dataset.id,
+        parent: this.props.parent
       })
       e.dataTransfer.effectAllowed = "move"
 
