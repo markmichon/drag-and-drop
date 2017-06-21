@@ -104,13 +104,12 @@ class App extends Component {
       targetIndex: index
     })
   }
-
+  // TODO: Refactor update mess
   updateOrder({ from, parent }) {
     const currentIndex = getArrayById(parent, this.state.lists)
     // const targetIndex = getListById(this.state.targetParent)
     let lists = this.state.lists
-    console.log("Parent", parent)
-    console.log("Target Parent", this.state.targetParent)
+
     if (this.state.targetParent === parent) {
       const newList = {
         id: this.state.targetParent,
@@ -140,8 +139,6 @@ class App extends Component {
         id: parent,
         data: removeFromArray(lists[currentIndex].data, from)
       }
-      console.log(from)
-      console.log(oldList)
       // Add Item to New array
 
       this.setState(prevState => {
@@ -167,7 +164,7 @@ class App extends Component {
   render() {
     const { lists, targetIndex } = this.state
     return (
-      <div className="App">
+      <div style={containersx}>
         {lists.map((list, idx) =>
           <div
             style={sx}
@@ -196,10 +193,14 @@ class App extends Component {
   }
 }
 
+let containersx = {
+  display: "flex",
+  alignItems: "stretch"
+}
 let sx = {
-  width: "40%",
+  width: "50%",
   margin: "1rem",
-  display: "inline-block"
+  backgroundColor: "#ccc"
 }
 
 export default App
